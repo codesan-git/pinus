@@ -1,3 +1,4 @@
+import Better from "@/components/Better";
 import Marquee from "@/components/Card";
 import Connecting from "@/components/Connecting";
 import HomeContainer from "@/components/HomeContainer";
@@ -12,6 +13,7 @@ export default function Home() {
       <Intro />
       <Connecting />
       <PerfectMatch />
+      <Better />
     </main>
   )
 }
