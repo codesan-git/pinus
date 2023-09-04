@@ -3,8 +3,8 @@ import { FC, useState } from 'react'
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 import { HomeIcon, BarChartIcon, BellIcon, EnvelopeOpenIcon, DotFilledIcon } from "@radix-ui/react-icons"
-import Image from 'next/image'
 import { Button } from './ui/button'
+import axios from 'axios'
 
 interface NavbarProps {
 
@@ -14,6 +14,16 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
+const handleResend = async() => {
+    const res = await axios.post(`http://localhost:3000/api/send`)
+    .then(function (response){
+        console.log(response)
+    })
+    .catch(function (error){
+        console.log(error)
+    })
+    return res
+}
 
 const Navbar: FC<NavbarProps> = () => {
     const segment = useSelectedLayoutSegment()
@@ -52,7 +62,7 @@ const Navbar: FC<NavbarProps> = () => {
                 </div>
                 <div className='flex justify-end'>
                     <div className='my-auto space-x-4'>
-                        <Button variant={'ghost'} className='space-x-4 rounded-full'>
+                        <Button variant={'ghost'} className='space-x-4 rounded-full' onClick={handleResend}>
                             <span>Log in</span>
                             <span><DotFilledIcon /></span>
                         </Button>
