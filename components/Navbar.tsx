@@ -28,7 +28,7 @@ const Navbar: FC<NavbarProps> = () => {
     ]
     console.log(`segment`, segment)
     return (
-        <nav>
+        <nav className='container'>
             <div className='grid grid-cols-3 h-28 items-center'>
                 <div className='flex justify-start'>
                     <div className='my-auto'>
