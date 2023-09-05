@@ -5,31 +5,56 @@ import { useSelectedLayoutSegment } from 'next/navigation'
 import { HomeIcon, BarChartIcon, BellIcon, EnvelopeOpenIcon, DotFilledIcon } from "@radix-ui/react-icons"
 import { Button } from './ui/button'
 import axios from 'axios'
+import ReactDOM from "react-dom"
+import { useForm, SubmitHandler } from "react-hook-form"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from './ui/textarea'
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 
 interface NavbarProps {
 
+}
+
+interface AirbnbReviewEmailProps {
+    authorName?: string;
+    authorImage?: string;
+    reviewText?: string;
 }
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-const handleResend = async() => {
+const handleResend = async () => {
     const res = await axios.post(`http://localhost:3000/api/send`)
-    .then(function (response){
-        console.log(response)
-    })
-    .catch(function (error){
-        console.log(error)
-    })
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
     return res
 }
 
 const Navbar: FC<NavbarProps> = () => {
     const segment = useSelectedLayoutSegment()
-    const [expanded, setExpanded] = useState(true)
-    const [openProfile, setOpenProfile] = useState(false)
-    const [openPayment, setOpenPayment] = useState(false)
+    const { register, handleSubmit } = useForm<AirbnbReviewEmailProps>()
+    const onSubmit: SubmitHandler<AirbnbReviewEmailProps> = (data) => console.log(data)
+    const formSchema = z.object({
+
+    })
+
     const navbarOptions = [
         { name: "Dashboard", href: "/", icon: HomeIcon, current: !segment ? true : false },
         { name: "Analytics", href: "/analytics", icon: BarChartIcon, current: `/${segment}` === "/analytics" ? true : false },
@@ -62,10 +87,47 @@ const Navbar: FC<NavbarProps> = () => {
                 </div>
                 <div className='flex justify-end'>
                     <div className='my-auto space-x-4'>
-                        <Button variant={'ghost'} className='space-x-4 rounded-full' onClick={handleResend}>
-                            <span>Log in</span>
-                            <span><DotFilledIcon /></span>
-                        </Button>
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button variant={'ghost'} className='space-x-4 rounded-full'>
+                                    <span>Log in</span>
+                                    <span><DotFilledIcon /></span>
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px] bg-white">
+                                <DialogHeader>
+                                    <DialogTitle>Send Email</DialogTitle>
+                                    <DialogDescription>
+                                        Sending Email using react-email resend.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <div className="grid gap-4 py-4">
+                                        <div className="grid grid-cols-4 items-center gap-4">
+                                            <Label htmlFor="authorName" className="text-right">
+                                                Author Name
+                                            </Label>
+                                            <Input id="authorName" className="col-span-3" {...register("authorName")} />
+                                        </div>
+                                        <div className="grid grid-cols-4 items-center gap-4">
+                                            <Label htmlFor="authorImage" className="text-right">
+                                                Author Image
+                                            </Label>
+                                            <Input id="authorImage" className="col-span-3" {...register("authorImage")} />
+                                        </div>
+                                        <div className="grid grid-cols-4 items-center gap-4">
+                                            <Label htmlFor="reviewText" className="text-right">
+                                                Review Text
+                                            </Label>
+                                            <Textarea id="reviewText" className="col-span-3" {...register("reviewText")} />
+                                        </div>
+                                    </div>
+                                    <DialogFooter>
+                                        <Button type="submit">Send</Button>
+                                    </DialogFooter>
+                                </form>
+                            </DialogContent>
+                        </Dialog>
                         <Button className='rounded-full'>
                             Hire Creative
                         </Button>
