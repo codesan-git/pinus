@@ -11,7 +11,8 @@ const nextConfig = {
                 hostname: 'img.logoipsum.com'
             }
         ]
-    }
+    },
+    transpilePackages: ['three'],
 }
 
 module.exports = nextConfig
