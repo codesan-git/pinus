@@ -1,5 +1,6 @@
 import Better from "@/components/Better";
 import Marquee from "@/components/Card";
+import Chart from "@/components/Chart";
 import Connecting from "@/components/Connecting";
 import EmailForm from "@/components/EmailForm";
 import HomeContainer from "@/components/HomeContainer";
@@ -19,6 +20,7 @@ export default function Home() {
       <Connecting />
       <PerfectMatch />
       <Better />
+      <Chart />
       <EmailForm />
     </main>
   )
