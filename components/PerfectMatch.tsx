@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Card, CardContent, CardFooter, CardHeader } from './ui/card'
 import { Badge } from './ui/badge'
 import { StarFilledIcon } from '@radix-ui/react-icons'
+import Ninja from './Ninja'
 
 interface PerfectMatchProps {
 
@@ -39,6 +40,9 @@ const PerfectMatch: FC<PerfectMatchProps> = ({ }) => {
                     height={300}
                     className='w-[574px] h-[635px] rounded-full object-cover'
                 />
+                <div className='absolute right-0 top-10'>
+                    <Ninja />
+                </div>
                 <div className='absolute right-0 bottom-0'>
                     <Card className='bg-white rounded-3xl'>
                         <CardHeader>

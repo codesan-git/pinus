@@ -12,38 +12,40 @@ const Chart: FC<AreaChartProps> = ({ }) => {
     {
       date: "Jan 22",
       SemiAnalysis: 2890000,
-      "The Pragmatic Engineer": 2338000,
+      PragmaticEngineer: 2338000,
     },
     {
       date: "Feb 22",
       SemiAnalysis: 2756000,
-      "The Pragmatic Engineer": 2103000,
+      PragmaticEngineer: 2103000,
     },
     {
       date: "Mar 22",
       SemiAnalysis: 3322000,
-      "The Pragmatic Engineer": 2194000,
+      PragmaticEngineer: 2194000,
     },
     {
       date: "Apr 22",
       SemiAnalysis: 3470000,
-      "The Pragmatic Engineer": 2108000,
+      PragmaticEngineer: 2108000,
     },
     {
       date: "May 22",
       SemiAnalysis: 3475000,
-      "The Pragmatic Engineer": 1812000,
+      PragmaticEngineer: 1812000,
     },
     {
       date: "Jun 22",
       SemiAnalysis: 3129000,
-      "The Pragmatic Engineer": 1726000,
+      PragmaticEngineer: 1726000,
     },
   ];
 
   const dataFormatter = (number: number) => {
-    return "Rp " + Intl.NumberFormat("id").format(number).toString();
+    return Intl.NumberFormat("id").format(number).toString().slice(0,-4);
   };
+
+  console.log(chartdata.slice(-3))
 
   return (
     <section className='container py-20'>
@@ -53,7 +55,7 @@ const Chart: FC<AreaChartProps> = ({ }) => {
           className="h-72 mt-4"
           data={chartdata}
           index="date"
-          categories={["SemiAnalysis", "The Pragmatic Engineer"]}
+          categories={["SemiAnalysis", "PragmaticEngineer"]}
           colors={["indigo", "cyan"]}
           valueFormatter={dataFormatter}
         />

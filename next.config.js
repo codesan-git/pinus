@@ -13,7 +13,6 @@ const nextConfig = {
         ]
     },
     transpilePackages: ['three'],
-    compress: true,
 }
 
 module.exports = nextConfig

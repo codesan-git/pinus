@@ -59,7 +59,7 @@ const Marquee: FC<CardProps> = ({ }) => {
                                 alt="Card Image"
                                 width={1500}
                                 height={1500}
-                                className="w-full h-full rounded-2xl contrast-50"
+                                className="w-full h-full rounded-2xl contrast-50 object-fill"
                             />
                             <CardContent className="absolute bottom-0 text-white font-semibold">
                                 <div>

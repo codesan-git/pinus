@@ -2,6 +2,7 @@ import Better from "@/components/Better";
 import Marquee from "@/components/Card";
 import Chart from "@/components/Chart";
 import Connecting from "@/components/Connecting";
+import Dragon from "@/components/DragonEvolved";
 import EmailForm from "@/components/EmailForm";
 import HomeContainer from "@/components/HomeContainer";
 import Intro from "@/components/Intro";
@@ -16,6 +17,7 @@ export default function Home() {
       <Three />
       <Marquee />
       <Ninja />
+      <Dragon />
       <Intro />
       <Connecting />
       <PerfectMatch />
